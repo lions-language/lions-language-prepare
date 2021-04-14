@@ -21,7 +21,12 @@ pub struct BinaryOperatorAstNode {
 }
 
 pub struct VariantAstNode {
-    token: TokenBox
+    // exp: new
+    token: TokenBox,
+    // exp: obj
+    prefix: Option<TokenBox>,
+    // exp: .
+    opt: Option<TokenBox>
 }
 
 pub struct ConstAstNode {
