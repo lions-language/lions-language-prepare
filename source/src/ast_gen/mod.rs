@@ -11,14 +11,21 @@ impl Generator {
             SingleOperator(_) => {
             },
             BinaryOperator(_) => {
-            }.
+            },
             Variant(_) => {
             },
             FuncCall(_) => {
-            }
-            Const(_) => {
+            },
+            Const(node) => {
+                self.gen_const(node);
             }
         }
+    }
+
+    fn gen_const(self, node: Box<ConstAstNode>) {
+        /*
+         *
+         * */
     }
 
     pub fn new(node: AstNode) -> Self {
