@@ -1,10 +1,18 @@
 use crate::ast::{AstNode};
 
-enum Type {
+enum PackageStr {
+    Local,
+    Other(String)
+}
+
+struct Type {
+    package_str: PackageStr,
+    moduler_str: String,
+    typ_str: String
 }
 
 struct NodeData {
-    typ Type
+    typ: Type
 }
 
 struct Generator {
