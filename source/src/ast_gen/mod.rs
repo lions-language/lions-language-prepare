@@ -41,6 +41,11 @@ impl Generator {
          * 生成指令
          * 1. 将常量放入到 栈中
          * */
+        match node.token {
+        }
+    }
+
+    fn gen_single_operate(self, node: Box<SingleOperator>) -> NodeData {
     }
 
     fn gen_binary_operator(self, node: Box<BinaryOperator>) -> NodeData {

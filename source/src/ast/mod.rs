@@ -30,7 +30,7 @@ pub struct VariantAstNode {
 }
 
 pub struct ConstAstNode {
-    token: TokenBox
+    pub token: TokenBox
 }
 
 pub struct Type {
