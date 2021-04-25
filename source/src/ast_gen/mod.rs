@@ -41,7 +41,13 @@ impl Generator {
          * 生成指令
          * 1. 将常量放入到 栈中
          * */
-        match node.token {
+        match typ {
+            TokenType::PrefixPlusPlus => {
+                self.value += 1;
+            },
+            _ => {
+                unimplemented!("{:?}", typ);
+            }
         }
     }
 

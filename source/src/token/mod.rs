@@ -23,6 +23,7 @@ pub trait Token {
     fn nup(self: Box<Self>, expr: &mut Expression) -> Result<AstNode, NupResult>;
     fn led(self: Box<Self>, expr: &mut Expression, left: Option<AstNode>) -> Result<AstNode, LedResult>;
     fn context_ref(&self) -> &TokenContext;
+    fn context(self) -> TokenContext;
 }
 
 pub struct TokenContext {
