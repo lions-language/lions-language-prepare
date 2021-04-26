@@ -1,6 +1,7 @@
 use crate::ast::{AstNode};
 
 enum PackageStr {
+    Inner,
     Local,
     Other(String)
 }
@@ -20,7 +21,7 @@ struct Generator {
 
 impl Generator {
     pub fn generate(self, node: AstNode) {
-        use AstNod::*;
+        use AstNode::*;
         match node {
             SingleOperator(_) => {
             },
@@ -41,9 +42,13 @@ impl Generator {
          * 生成指令
          * 1. 将常量放入到 栈中
          * */
-        match typ {
-            TokenType::PrefixPlusPlus => {
-                self.value += 1;
+        match node.context().typ {
+            TokenType::U32(value) => {
+                return NodeData{
+                    typ: Type{
+                        package_str: PackageStr::Inner,
+                    }
+                }
             },
             _ => {
                 unimplemented!("{:?}", typ);

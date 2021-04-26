@@ -29,6 +29,10 @@ impl Token for PrefixPlusPlusToken {
     fn context_ref(&self) -> &TokenContext {
         &self.context
     }
+
+    fn context(self) -> TokenContext {
+        self.context
+    }
 }
 
 impl PrefixPlusPlusToken {

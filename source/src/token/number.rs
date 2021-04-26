@@ -23,6 +23,10 @@ impl Token for U32Token {
     fn context_ref(&self) -> &TokenContext {
         &self.context
     }
+
+    fn context(self) -> TokenContext {
+        self.context
+    }
 }
 
 impl U32Token {

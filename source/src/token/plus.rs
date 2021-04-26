@@ -26,6 +26,10 @@ impl Token for PlusToken {
     fn context_ref(&self) -> &TokenContext {
         &self.context
     }
+
+    fn context(self) -> TokenContext {
+        self.context
+    }
 }
 
 impl PlusToken {
