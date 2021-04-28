@@ -27,7 +27,7 @@ impl Token for PlusToken {
         &self.context
     }
 
-    fn context(self) -> TokenContext {
+    fn context(self: Box<Self>) -> TokenContext {
         self.context
     }
 }

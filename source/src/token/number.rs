@@ -24,7 +24,7 @@ impl Token for U32Token {
         &self.context
     }
 
-    fn context(self) -> TokenContext {
+    fn context(self: Box<Self>) -> TokenContext {
         self.context
     }
 }

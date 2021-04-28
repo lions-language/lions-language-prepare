@@ -30,7 +30,7 @@ impl Token for PrefixPlusPlusToken {
         &self.context
     }
 
-    fn context(self) -> TokenContext {
+    fn context(self: Box<Self>) -> TokenContext {
         self.context
     }
 }
