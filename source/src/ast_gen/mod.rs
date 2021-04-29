@@ -2,6 +2,11 @@ use crate::ast::{AstNode, ConstAstNode, SingleOperatorAstNode
     , BinaryOperatorAstNode};
 use crate::token::{TokenType};
 
+enum Instructure {
+    // Push4([char; 4])
+    Push4(Vec<u8>)
+}
+
 enum PackageStr {
     Inner,
     Local,
@@ -52,6 +57,7 @@ impl Generator {
         let context = node.token.context();
         match context.typ {
             TokenType::U32(value) => {
+                // Instructure::Push4()
                 return NodeData{
                     typ: Type{
                         package_str: PackageStr::Inner,
