@@ -3,8 +3,7 @@ use crate::ast::{AstNode, ConstAstNode, SingleOperatorAstNode
 use crate::token::{TokenType};
 
 enum Instructure {
-    // Push4([char; 4])
-    Push4(Vec<u8>)
+    PushU32(u32)
 }
 
 enum PackageStr {
@@ -29,10 +28,11 @@ struct NodeData {
 }
 
 struct Generator {
+    ins: Vec<Instructure>
 }
 
 impl Generator {
-    pub fn generate(self, node: AstNode) {
+    pub fn generate(&mut self, node: AstNode) {
         use AstNode::*;
         match node {
             SingleOperator(_) => {
@@ -49,7 +49,7 @@ impl Generator {
         }
     }
 
-    fn gen_const(self, node: Box<ConstAstNode>) -> NodeData {
+    fn gen_const(&mut self, node: Box<ConstAstNode>) -> NodeData {
         /*
          * 生成指令
          * 1. 将常量放入到 栈中
@@ -57,7 +57,7 @@ impl Generator {
         let context = node.token.context();
         match context.typ {
             TokenType::U32(value) => {
-                // Instructure::Push4()
+                self.ins.push(Instructure::PushU32(value));
                 return NodeData{
                     typ: Type{
                         package_str: PackageStr::Inner,
@@ -72,11 +72,11 @@ impl Generator {
         }
     }
 
-    fn gen_single_operate(self, node: Box<SingleOperatorAstNode>) -> NodeData {
+    fn gen_single_operate(&mut self, node: Box<SingleOperatorAstNode>) -> NodeData {
         unimplemented!();
     }
 
-    fn gen_binary_operator(self, node: Box<BinaryOperatorAstNode>) -> NodeData {
+    fn gen_binary_operator(&mut self, node: Box<BinaryOperatorAstNode>) -> NodeData {
         /*
          * 生成指令
          * 1. 判断左边和右边的类型
@@ -89,6 +89,7 @@ impl Generator {
 
     pub fn new() -> Self {
         Self {
+            ins: Vec::new(),
         }
     }
 }
