@@ -73,7 +73,19 @@ impl Generator {
     }
 
     fn gen_single_operate(&mut self, node: Box<SingleOperatorAstNode>) -> NodeData {
-        unimplemented!();
+        let context = node.token.context();
+        match context.typ {
+            TokenType::PrefixPlusPlus => {
+                /*
+                 * 1. 获取 left 的 Type
+                 * 2. 调用 left 的 prefix_plus_plus 函数, 并得到 NodeData
+                 * */
+                let left_node_data = self.generate(node.left);
+            },
+            _ => {
+                unimplemented!("{:?}");
+            }
+        }
     }
 
     fn gen_binary_operator(&mut self, node: Box<BinaryOperatorAstNode>) -> NodeData {
