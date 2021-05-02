@@ -2,6 +2,8 @@ use crate::ast::{AstNode, ConstAstNode, SingleOperatorAstNode
     , BinaryOperatorAstNode};
 use crate::token::{TokenType};
 
+const OPERATE_PLUS: &'a static str = "plus";
+
 enum Instructure {
     PushU32(u32)
 }
@@ -29,6 +31,10 @@ struct NodeData {
 
 struct Generator {
     ins: Vec<Instructure>
+}
+
+struct FindFunction {
+    func_name: String
 }
 
 impl Generator {
@@ -81,6 +87,7 @@ impl Generator {
                  * 2. 调用 left 的 prefix_plus_plus 函数, 并得到 NodeData
                  * */
                 let left_node_data = self.generate(node.left);
+                left_node_data.
             },
             _ => {
                 unimplemented!("{:?}");
