@@ -2,7 +2,8 @@ use crate::ast::{AstNode, ConstAstNode, SingleOperatorAstNode
     , BinaryOperatorAstNode};
 use crate::token::{TokenType};
 
-const OPERATE_PLUS: &'a static str = "plus";
+const OPERATE_PLUS: &'static str = "plus";
+const OPERATE_PREFIX_PLUS: &'static str = "prefix_plus";
 
 enum Instructure {
     PushU32(u32)
@@ -86,11 +87,11 @@ impl Generator {
                  * 1. 获取 left 的 Type
                  * 2. 调用 left 的 prefix_plus_plus 函数, 并得到 NodeData
                  * */
-                let left_node_data = self.generate(node.left);
-                left_node_data.
+                let left_node_data = self.generate(node.child);
+                unimplemented!("");
             },
             _ => {
-                unimplemented!("{:?}");
+                unimplemented!("");
             }
         }
     }

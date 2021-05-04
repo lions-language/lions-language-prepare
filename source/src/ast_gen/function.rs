@@ -1,6 +1,16 @@
+use crate::ast_gen;
 use std::collections::HashMap;
 
+struct FunctionParam {
+}
+
+struct FunctionReturn {
+}
+
 struct Function {
+    params: Vec<FunctionParam>,
+    ret: Option<FunctionReturn>,
+    ins: Vec<ast_gen::Instructure>
 }
 
 struct FunctionSet {

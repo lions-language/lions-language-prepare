@@ -10,14 +10,14 @@ pub enum AstNode {
 }
 
 pub struct SingleOperatorAstNode {
-    token: TokenBox,
-    child: AstNode
+    pub token: TokenBox,
+    pub child: AstNode
 }
 
 pub struct BinaryOperatorAstNode {
-    token: TokenBox,
-    left: AstNode,
-    right: AstNode
+    pub token: TokenBox,
+    pub left: AstNode,
+    pub right: AstNode
 }
 
 pub struct VariantAstNode {
