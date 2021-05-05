@@ -1,5 +1,5 @@
-use crate::ast_gen;
 use std::collections::HashMap;
+use crate::ast_gen;
 
 struct FunctionParam {
 }
@@ -13,7 +13,7 @@ struct Function {
     ins: Vec<ast_gen::Instructure>
 }
 
-struct FunctionSet {
+pub struct FunctionSet {
     functions: HashMap<String, Function>
 }
 
@@ -25,4 +25,3 @@ impl FunctionSet {
     }
 }
 
-mod function;

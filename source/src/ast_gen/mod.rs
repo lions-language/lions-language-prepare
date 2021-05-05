@@ -114,3 +114,6 @@ impl Generator {
     }
 }
 
+mod structure;
+mod function;
+

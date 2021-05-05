@@ -1,8 +1,9 @@
-use std::co;llections::HashMap;
+use std::collections::HashMap;
+use crate::ast_gen::{self, function};
 
 struct Structure {
     name: String,
-    memthods: FunctionSet
+    memthods: function::FunctionSet
 }
 
 impl Structure {
@@ -12,7 +13,7 @@ impl Structure {
     pub fn new() -> Self {
         Self {
             name: String::new(),
-            memthods: FunctionSet::new()
+            memthods: function::FunctionSet::new()
         }
     }
 }
@@ -25,6 +26,19 @@ impl StructureSet {
     pub fn new() -> Self {
         Self {
             structures: HashMap::new()
+        }
+    }
+}
+
+struct StructureControl {
+}
+
+impl StructureControl {
+    pub fn find(&mut self, typ: ast_gen::Type) {
+    }
+
+    pub fn new() -> Self {
+        Self {
         }
     }
 }
