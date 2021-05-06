@@ -31,11 +31,8 @@ struct NodeData {
 }
 
 struct Generator {
-    ins: Vec<Instructure>
-}
-
-struct FindFunction {
-    func_name: String
+    ins: Vec<Instructure>,
+    structure_control: ast_gen::StructureControl,
 }
 
 impl Generator {
@@ -88,6 +85,7 @@ impl Generator {
                  * 2. 调用 left 的 prefix_plus_plus 函数, 并得到 NodeData
                  * */
                 let left_node_data = self.generate(node.child);
+                self.structure_control.find(typ);
                 unimplemented!("");
             },
             _ => {
@@ -110,6 +108,7 @@ impl Generator {
     pub fn new() -> Self {
         Self {
             ins: Vec::new(),
+            structure_control: ast_gen::structure::StructureControl::new(),
         }
     }
 }
