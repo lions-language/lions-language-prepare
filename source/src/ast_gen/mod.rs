@@ -32,23 +32,27 @@ struct NodeData {
 
 struct Generator {
     ins: Vec<Instructure>,
-    structure_control: ast_gen::StructureControl,
+    structure_control: structure::StructureControl,
 }
 
 impl Generator {
-    pub fn generate(&mut self, node: AstNode) {
+    pub fn generate(&mut self, node: AstNode) -> NodeData {
         use AstNode::*;
         match node {
             SingleOperator(_) => {
+                unimplemented!();
             },
             BinaryOperator(_) => {
+                unimplemented!();
             },
             Variant(_) => {
+                unimplemented!();
             },
             FuncCall(_) => {
+                unimplemented!();
             },
             Const(node) => {
-                self.gen_const(node);
+                self.gen_const(node)
             }
         }
     }
@@ -85,7 +89,7 @@ impl Generator {
                  * 2. 调用 left 的 prefix_plus_plus 函数, 并得到 NodeData
                  * */
                 let left_node_data = self.generate(node.child);
-                self.structure_control.find(typ);
+                self.structure_control.find(left_node_data.typ);
                 unimplemented!("");
             },
             _ => {
@@ -108,7 +112,7 @@ impl Generator {
     pub fn new() -> Self {
         Self {
             ins: Vec::new(),
-            structure_control: ast_gen::structure::StructureControl::new(),
+            structure_control: structure::StructureControl::new(),
         }
     }
 }

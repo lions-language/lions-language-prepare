@@ -30,12 +30,11 @@ impl StructureSet {
     }
 }
 
-struct StructureControl {
+pub struct StructureControl {
 }
 
 impl StructureControl {
     pub fn find(&mut self, typ: ast_gen::Type) {
-        let (package_str, module_str, typ_str) = typ;
     }
 
     pub fn new() -> Self {
