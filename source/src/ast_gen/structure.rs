@@ -35,6 +35,15 @@ pub struct StructureControl {
 
 impl StructureControl {
     pub fn find(&mut self, typ: ast_gen::Type) {
+        use ast_gen::PackageStr::*;
+        match typ.package_str {
+            Inner => {
+            },
+            Local => {
+            },
+            Other(v) => {
+            }
+        }
     }
 
     pub fn new() -> Self {
