@@ -5,3 +5,4 @@ mod lexical;
 mod stmt;
 mod ast_gen;
 mod define;
+mod grammar;
