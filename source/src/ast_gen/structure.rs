@@ -18,11 +18,11 @@ impl Structure {
     }
 }
 
-struct StructureSet {
+struct StructureModule {
     structures: HashMap<String, Structure>
 }
 
-impl StructureSet {
+impl StructureModule {
     pub fn new() -> Self {
         Self {
             structures: HashMap::new()
@@ -30,18 +30,35 @@ impl StructureSet {
     }
 }
 
+struct StructureSet {
+    modules: HashMap<String, StructureModule>
+}
+
+impl StructureSet {
+    pub fn new() -> Self {
+        Self {
+            modules: HashMap::new()
+        }
+    }
+}
+
+/////////////////////////////////////////
 pub struct StructureControl {
+    inner: StructureSet
 }
 
 impl StructureControl {
-    pub fn find(&mut self, typ: ast_gen::Type) {
+    pub fn find(&mut self, typ: ast_gen::Type) -> &StructureSet {
         use ast_gen::PackageStr::*;
         match typ.package_str {
             Inner => {
+                self.inner.find(typ.module_str, typ.typ_str)
             },
             Local => {
+                unimplemented!();
             },
             Other(v) => {
+                unimplemented!();
             }
         }
     }
