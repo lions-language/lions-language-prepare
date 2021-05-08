@@ -23,6 +23,10 @@ struct StructureModule {
 }
 
 impl StructureModule {
+    pub fn find(&self, typ_str: String) -> &Option<Structure> {
+        self.structures.get(&typ_str)
+    }
+
     pub fn new() -> Self {
         Self {
             structures: HashMap::new()
@@ -31,10 +35,20 @@ impl StructureModule {
 }
 
 struct StructureSet {
-    modules: HashMap<String, StructureModule>
+    modules: HashMap<ast_gen::ModuleStr, StructureModule>
 }
 
 impl StructureSet {
+    pub fn find(&self, module_str: ast_gen::ModuleStr, typ_str: String) -> &Option<Structure> {
+        let module = match self.modules.get(&module_str) {
+            Some(m) => m,
+            None => {
+                return
+            }
+        };
+        module.find(typ_str)
+    }
+
     pub fn new() -> Self {
         Self {
             modules: HashMap::new()
