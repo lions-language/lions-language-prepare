@@ -23,7 +23,7 @@ struct StructureModule {
 }
 
 impl StructureModule {
-    pub fn find(&self, typ_str: String) -> &Option<Structure> {
+    pub fn find(&self, typ_str: String) -> Option<&Structure> {
         self.structures.get(&typ_str)
     }
 
@@ -39,11 +39,11 @@ struct StructureSet {
 }
 
 impl StructureSet {
-    pub fn find(&self, module_str: ast_gen::ModuleStr, typ_str: String) -> &Option<Structure> {
+    pub fn find(&self, module_str: ast_gen::ModuleStr, typ_str: String) -> Option<&Structure> {
         let module = match self.modules.get(&module_str) {
             Some(m) => m,
             None => {
-                return
+                return None;
             }
         };
         module.find(typ_str)
@@ -62,11 +62,11 @@ pub struct StructureControl {
 }
 
 impl StructureControl {
-    pub fn find(&mut self, typ: ast_gen::Type) -> &StructureSet {
+    pub fn find(&mut self, typ: ast_gen::Type) -> Option<&Structure> {
         use ast_gen::PackageStr::*;
         match typ.package_str {
             Inner => {
-                self.inner.find(typ.module_str, typ.typ_str)
+                self.inner.find(typ.moduler_str, typ.typ_str)
             },
             Local => {
                 unimplemented!();
@@ -77,8 +77,9 @@ impl StructureControl {
         }
     }
 
-    pub fn new() -> Self {
+    pub fn new(set: StructureSet) -> Self {
         Self {
+            inner: set
         }
     }
 }

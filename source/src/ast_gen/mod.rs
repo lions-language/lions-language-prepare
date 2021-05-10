@@ -15,6 +15,7 @@ enum PackageStr {
     Other(String)
 }
 
+#[derive(PartialEq, Eq, Hash)]
 enum ModuleStr {
     Inner,
     Named(String)
