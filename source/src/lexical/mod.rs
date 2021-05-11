@@ -4,7 +4,7 @@ use std::collections::VecDeque;
 
 pub struct Lexical {
     content: VecDeque<u8>,
-    tokens: Vec<TokenBox>
+    tokens: VecDeque<TokenBox>
 }
 
 impl Lexical {
@@ -34,7 +34,7 @@ impl Lexical {
 
     fn plus_process(&mut self) {
         self.skip_next_one();
-        self.tokens.push(plus::make_plus_token());
+        self.tokens.push_back(plus::make_plus_token());
     }
 
     /*
@@ -164,7 +164,7 @@ impl Lexical {
         }
     }
 
-    pub fn tokens(self) -> Vec<TokenBox> {
+    pub fn tokens(self) -> VecDeque<TokenBox> {
         self.tokens
     }
 
