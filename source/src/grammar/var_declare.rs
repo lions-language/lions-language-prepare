@@ -1,4 +1,6 @@
 use crate::lexical;
+use crate::token;
+use std::collections;
 
 struct VarDeclare {
 }
@@ -13,13 +15,9 @@ impl VarDeclare {
         int a = 1
         ";
         let mut lexical = lexical::Lexical::new(content.as_bytes().to_vec());
-        match lexical.lookup_next_one() {
-            Some(n) => {
-            },
-            None => {
-                panic!("expect int");
-            }
-        }
+        lexical.parse();
+        let tokens = lexical.tokens();
+        let token_option = token::TokenOption::new(tokens);
     }
 
     pub fn new() -> Self {
