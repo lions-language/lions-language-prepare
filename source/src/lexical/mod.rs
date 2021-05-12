@@ -114,7 +114,7 @@ impl Lexical {
                 /*
                  * 非整数
                  * */
-                self.tokens.push(number::make_u32_token(value));
+                self.tokens.push_back(number::make_u32_token(value));
                 break;
             }
         }
@@ -171,7 +171,7 @@ impl Lexical {
     pub fn new(content: Vec<u8>) -> Self {
         Self {
             content: VecDeque::from(content),
-            tokens: Vec::new()
+            tokens: VecDeque::new()
         }
     }
 }
