@@ -1,7 +1,16 @@
-pub enum Token {
+pub struct TokenvValue {
+    pub value: String
+}
+
+pub enum TokenType {
     Int,
     Identify,
     Number,
     Equal,
+}
+
+pub struct Token {
+    pub typ: TokenType,
+    pub value: TokenValue
 }
 

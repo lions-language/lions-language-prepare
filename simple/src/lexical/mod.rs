@@ -1,9 +1,9 @@
-use crate::token;
+use crate::simple::token;
 use std::collections::VecDeque;
 
 pub struct Lexical {
     content: VecDeque<u8>,
-    tokens: VecDeque<Token>
+    tokens: VecDeque<token::Token>
 }
 
 impl Lexical {
