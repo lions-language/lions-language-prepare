@@ -1,4 +1,4 @@
-use crate::simple::token;
+use crate::token;
 use std::collections::VecDeque;
 
 pub struct Lexical {
@@ -19,7 +19,7 @@ impl Lexical {
             };
             match next_ch {
                 '=' => {
-                    self.equal_process();
+                    self.equal_process(next_ch);
                 },
                 '\r'|'\n'|'\t'|' ' => {
                     self.skip_next_one();
@@ -31,9 +31,12 @@ impl Lexical {
         }
     }
 
-    fn equal_process(&mut self) {
+    fn equal_process(&mut self, c: char) {
         self.skip_next_one();
-        self.tokens.push_back(token::Token::Equal);
+        self.tokens.push_back(token::Token{
+            typ: token::TokenType::Equal,
+            value: String::from(c),
+        });
     }
 
     /*
@@ -98,7 +101,7 @@ impl Lexical {
     }
 
     fn number_process(&mut self, start_c: char) {
-        let mut value: u32 = (start_c as u8 - '0' as u8) as u32;
+        let mut value: String = String::new();
         loop {
             let c = match self.lookup_next_one() {
                 Some(c) => c,
@@ -107,13 +110,18 @@ impl Lexical {
                 }
             };
             if let Some(v) = self.number_is_10(c) {
-                value = value * 10 + v as u32;
+                value.push_back(c);
                 self.skip_next_one();
             } else {
                 /*
                  * 非整数
                  * */
-                self.tokens.push_back(number::make_u32_token(value));
+                self.tokens.push_back(token::Token{
+                    typ: token::TokenType::Number,
+                    value: token::TokenValue{
+                        value: value
+                    }
+                });
                 break;
             }
         }
@@ -163,7 +171,7 @@ impl Lexical {
         }
     }
 
-    pub fn tokens(self) -> VecDeque<Token> {
+    pub fn tokens(self) -> VecDeque<token::Token> {
         self.tokens
     }
 

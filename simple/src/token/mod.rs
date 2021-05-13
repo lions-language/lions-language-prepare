@@ -1,4 +1,4 @@
-pub struct TokenvValue {
+pub struct TokenValue {
     pub value: String
 }
 
