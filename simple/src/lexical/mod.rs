@@ -33,9 +33,13 @@ impl Lexical {
 
     fn equal_process(&mut self, c: char) {
         self.skip_next_one();
+        let value := String::new();
+        value.push_back(c);
         self.tokens.push_back(token::Token{
             typ: token::TokenType::Equal,
-            value: String::from(c),
+            value: token:TokenValue::TokenValue{
+                value: value
+            },
         });
     }
 
