@@ -2,6 +2,7 @@ pub struct TokenValue {
     pub value: String
 }
 
+#[derive(Debug)]
 pub enum TokenType {
     Int,
     Identify,

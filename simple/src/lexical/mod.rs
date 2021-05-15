@@ -33,13 +33,13 @@ impl Lexical {
 
     fn equal_process(&mut self, c: char) {
         self.skip_next_one();
-        let value := String::new();
-        value.push_back(c);
+        let mut value = String::new();
+        value.push(c);
         self.tokens.push_back(token::Token{
             typ: token::TokenType::Equal,
-            value: token:TokenValue::TokenValue{
+            value: token::TokenValue{
                 value: value
-            },
+            }
         });
     }
 
@@ -114,7 +114,7 @@ impl Lexical {
                 }
             };
             if let Some(v) = self.number_is_10(c) {
-                value.push_back(c);
+                value.push(c);
                 self.skip_next_one();
             } else {
                 /*
@@ -171,7 +171,7 @@ impl Lexical {
 
     pub fn print_tokens(&self) {
         for token in self.tokens.iter() {
-            println!("{:?}", token.context_ref().typ);
+            println!("{:?}", token.typ);
         }
     }
 
