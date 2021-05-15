@@ -35,12 +35,7 @@ impl Lexical {
         self.skip_next_one();
         let mut value = String::new();
         value.push(c);
-        self.tokens.push_back(token::Token{
-            typ: token::TokenType::Equal,
-            value: token::TokenValue{
-                value: value
-            }
-        });
+        self.tokens.push_back(token::Token::Equal(value));
     }
 
     /*
@@ -120,12 +115,7 @@ impl Lexical {
                 /*
                  * 非整数
                  * */
-                self.tokens.push_back(token::Token{
-                    typ: token::TokenType::Number,
-                    value: token::TokenValue{
-                        value: value
-                    }
-                });
+                self.tokens.push_back(token::Token::Number(value));
                 break;
             }
         }
@@ -171,7 +161,7 @@ impl Lexical {
 
     pub fn print_tokens(&self) {
         for token in self.tokens.iter() {
-            println!("{:?}", token.typ);
+            println!("{:?}", token);
         }
     }
 

@@ -1,17 +1,9 @@
-pub struct TokenValue {
-    pub value: String
-}
-
 #[derive(Debug)]
-pub enum TokenType {
-    Int,
-    Identify,
-    Number,
-    Equal,
+pub enum Token {
+    Int(String),
+    Identify(String),
+    Number(String),
+    Equal(String),
 }
 
-pub struct Token {
-    pub typ: TokenType,
-    pub value: TokenValue
-}
 
