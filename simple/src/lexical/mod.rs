@@ -84,12 +84,12 @@ impl Lexical {
                 }
             }
         }
-        /*
         match s.as_str() {
+            "var" => {
+            },
             _ => {
             }
         }
-        */
     }
 
     fn number_is_10(&self, c: char) -> Option<u8> {
